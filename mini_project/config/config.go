@@ -2,7 +2,7 @@ package config
 
 import (
 	"fmt"
-	"mini_project_anggun/model"
+	"mini_project/model"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
