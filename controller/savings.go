@@ -9,8 +9,8 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-func GetSavingsProgress(c echo.Context) error {
-	savingsProgress, err := usecase.GetSavingsProgress()
+func GetAllSavings(c echo.Context) error {
+	savings, err := usecase.GetAllSavings()
 
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, map[string]interface{}{
@@ -20,70 +20,70 @@ func GetSavingsProgress(c echo.Context) error {
 	}
 
 	return c.JSON(http.StatusOK, map[string]interface{}{
-		"message":         "success",
-		"savingsProgress": savingsProgress,
+		"message": "success",
+		"savings": savings,
 	})
 }
 
-func GetSavingsProgressByID(c echo.Context) error {
+func GetSavingByID(c echo.Context) error {
 	id, _ := strconv.ParseUint(c.Param("id"), 10, 32)
-	savingsProgress, err := usecase.GetSavingsProgress(uint(id))
+	savings, err := usecase.GetSavingsByID(uint(id))
 
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, map[string]interface{}{
-			"message": "error fetching savings progress data",
+			"message": "error fetching savings data",
 			"error":   err,
 		})
 	}
 
 	return c.JSON(http.StatusOK, map[string]interface{}{
-		"message":         "success",
-		"savingsProgress": savingsProgress,
+		"message":  "success",
+		"savingss": savings,
 	})
 }
 
-func CreateSavingsProgress(c echo.Context) error {
-	sp := model.Savings_Progress{}
-	c.Bind(&sp)
+func CreateSavings(c echo.Context) error {
+	s := model.Savings{}
+	c.Bind(&s)
 
-	if err := usecase.CreateSavingsProgress(&sp); err != nil {
+	if err := usecase.CreateSavings(&s); err != nil {
 		return c.JSON(http.StatusBadRequest, map[string]interface{}{
-			"message": "error creating savings progress data",
+			"message": "error creating savings data",
 			"error":   err,
 		})
 	}
 
 	return c.JSON(http.StatusOK, map[string]interface{}{
-		"message":         "success",
-		"savingsProgress": sp,
+		"message": "success",
+		"savings": "s",
 	})
 }
 
-func UpdateSavingsProgress(c echo.Context) error {
+func UpdateSavings(c echo.Context) error {
 	id, _ := strconv.ParseUint(c.Param("id"), 10, 32)
-	sp := model.Savings_Progress{}
-	c.Bind(&sp)
-	sp.ID = uint(id)
+	s := model.Savings{}
+	c.Bind(&s)
+	s.ID = uint(id)
 
-	if err := usecase.UpdateSavingsProgress(&sp); err != nil {
+	if err := usecase.UpdateSavings(&s); err != nil {
 		return c.JSON(http.StatusBadRequest, map[string]interface{}{
-			"message": "error updating savings progress data",
+			"message": "error updating savings data",
 			"error":   err,
 		})
 	}
 
 	return c.JSON(http.StatusOK, map[string]interface{}{
-		"message":         "success",
-		"savingsProgress": sp,
+		"message": "success",
+		"savings": s,
 	})
 }
 
-func DeleteSavingsProgress(c echo.Context) error {
+func DeleteSavings(c echo.Context) error {
 	id, _ := strconv.ParseUint(c.Param("id"), 10, 32)
 
-	if err := usecase.DeleteSavingsProgress(uint(id)); err != nil {
+	if err := usecase.DeleteSavings(uint(id)); err != nil {
 		return c.JSON(http.StatusBadRequest, map[string]interface{}{
-			"message": "error deleting savings progress data",
+			"message": "error deleting savings data",
 			"error":   err,
 		})
 	}

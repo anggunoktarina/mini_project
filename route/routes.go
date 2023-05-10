@@ -61,18 +61,12 @@ func NewRoute(e *echo.Echo, db *gorm.DB) {
 	kas.POST("", controller.CreateKasController)
 	kas.PUT("/:id", controller.UpdateKasController)
 
-	//template savings collection
-	template_savings := e.Group("/template_savings")
-	template_savings.GET("", controller.GetTemplateSavings)
-	template_savings.POST("", controller.CreateTemplateSavings)
-	template_savings.PUT("/:id", controller.UpdateTemplateSavingsController)
-
 	//saving progress
-	savings_progress := e.Group("/savings_progress")
-	savings_progress.GET("", controller.GetSavingsProgress)
-	savings_progress.GET("", controller.GetSavingsProgressByID)
-	savings_progress.POST("", controller.CreateSavingsProgress)
-	savings_progress.PUT("/:id", controller.UpdateSavingsProgress)
-	savings_progress.DELETE("/:id", controller.DeleteSavingsProgress)
+	savings := e.Group("/savings")
+	savings.GET("", controller.GetAllSavings)
+	savings.GET("/:id", controller.GetSavingByID)
+	savings.POST("", controller.CreateSavings)
+	savings.PUT("/:id", controller.UpdateSavings)
+	savings.DELETE("/:id", controller.DeleteSavings)
 
 }

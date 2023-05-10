@@ -45,5 +45,5 @@ func GetRemainingBalance(kas *model.Kas) (float64, error) {
 	for _, e := range expense {
 		total -= e.Balance
 	}
-	return total, nil
+	return float64(total), nil
 }
