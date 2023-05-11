@@ -13,5 +13,5 @@ func main() {
 
 	route.NewRoute(e, db)
 
-	e.Logger.Fatal(e.Start(":9090"))
+	e.Logger.Fatal(e.Start(":8080"))
 }
