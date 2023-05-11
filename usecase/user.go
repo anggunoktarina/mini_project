@@ -4,7 +4,7 @@ import (
 	"fmt"
 	middlewares "mini_project/middlewares"
 	"mini_project/model"
-	"mini_project/model/payload.go"
+	"mini_project/model/payload"
 	"mini_project/repository/database"
 )
 

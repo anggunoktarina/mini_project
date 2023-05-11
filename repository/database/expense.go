@@ -19,14 +19,6 @@ func GetExpense() (expense []model.Expense, err error) {
 	return
 }
 
-// func GetExpense(id uint) (expense model.Expense, err error) {
-// 	expense.ID = id
-// 	if err = config.DB.First(&expense).Error; err != nil {
-// 		return
-// 	}
-// 	return
-// }
-
 func UpdateExpense(expense *model.Expense) error {
 	if err := config.DB.Updates(expense).Error; err != nil {
 		return err

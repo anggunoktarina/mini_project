@@ -14,5 +14,5 @@ type Savings struct {
 	Start_Date             time.Time `json:"start_date"`
 	Additional_Information string    `json:"additional_information"`
 	Total_Saved            float64   `json:"total_saved"`
-	User                   User
+	User_ID                int       `json:"user_id"`
 }

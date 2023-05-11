@@ -16,13 +16,22 @@ func CreateExpense(expense *model.Expense) error {
 	return nil
 }
 
-func GetExpense(expense *model.Expense) error {
-	err := database.GetExpense(expense)
+func GetExpense() (expense []model.Expense, err error) {
+	expense, err = database.GetExpense()
 	if err != nil {
 		fmt.Println("GetExpense: Error getting expense from database")
-		return err
+		return
 	}
-	return nil
+	return
+}
+
+func GetListExpense() (expense []model.Expense, err error) {
+	expense, err = database.GetExpense()
+	if err != nil {
+		fmt.Println("GetListExpense: Error getting expense from database")
+		return
+	}
+	return
 }
 
 func UpdateExpense(expense *model.Expense) (err error) {

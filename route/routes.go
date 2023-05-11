@@ -2,7 +2,6 @@ package route
 
 import (
 	"mini_project/controller"
-	"mini_project/middlewares"
 	"net/http"
 
 	"github.com/go-playground/validator"
@@ -23,15 +22,10 @@ func (cv *CustomValidator) Validate(i interface{}) error {
 }
 
 func NewRoute(e *echo.Echo, db *gorm.DB) {
-
-	middlewares := middlewares.NewMiddlewares()
-	e.Use(middlewares.Logmiddleware)
-	e.Pre(middlewares.RemoveTrailingSlash())
-
 	e.Validator = &CustomValidator{validator: validator.New()}
 
-	e.POST("/register", controller.CreateUserController)
 	e.POST("/login", controller.LoginUserController)
+	e.POST("/register", controller.CreateUserController)
 
 	// user collection
 	user := e.Group("/users")
