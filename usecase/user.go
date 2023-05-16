@@ -8,7 +8,7 @@ import (
 	"mini_project/repository/database"
 )
 
-func LoginUsers(user *model.User) (err error) {
+func LoginUser(user *model.User) (err error) {
 	// check to db email and password
 	err = database.LoginUser(user)
 	if err != nil {
@@ -53,8 +53,9 @@ func CreateUser(req *payload.CreateUserRequest) (resp payload.CreateUserResponse
 	}
 	return
 }
-func GetUsers() (user []model.User, err error) {
-	user, err = database.GetUsers()
+
+func GetUsers() (users []model.User, err error) {
+	users, err = database.GetUsers()
 	if err != nil {
 		fmt.Println("GetUser: Error getting user from database")
 		return
@@ -70,7 +71,6 @@ func GetUserById(id uint) (user model.User, err error) {
 		fmt.Println("GetUser: Error getting user from database")
 		return
 	}
-
 	return
 }
 

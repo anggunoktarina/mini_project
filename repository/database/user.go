@@ -12,6 +12,20 @@ func CreateUser(user *model.User) error {
 	return nil
 }
 
+// func GetUsers() (users []model.User, err error) {
+// 	if err = config.DB.Model(&model.User{}).Preload("Blogs").Find(&users).Error; err != nil {
+// 		return
+// 	}
+// 	return
+// }
+
+// func GetUser(user *model.User) (err error) {
+// 	if err = config.DB.First(&user).Error; err != nil {
+// 		return
+// 	}
+// 	return
+// }
+
 func GetUsers() (users []model.User, err error) {
 	if err = config.DB.Model(&model.User{}).Preload("Blogs").Find(&users).Error; err != nil {
 		return
@@ -26,13 +40,13 @@ func GetUser(user *model.User) (err error) {
 	return
 }
 
-func GetUserWithBlog(id uint) (user model.User, err error) {
-	user.ID = id
-	if err = config.DB.Model(&model.User{}).Preload("Blogs").First(&user).Error; err != nil {
-		return
-	}
-	return
-}
+// func GetUserWithBlog(id uint) (user model.User, err error) {
+// 	user.ID = id
+// 	if err = config.DB.Model(&model.User{}).Preload("Blogs").First(&user).Error; err != nil {
+// 		return
+// 	}
+// 	return
+// }
 
 func UpdateUser(user *model.User) error {
 	if err := config.DB.Updates(user).Error; err != nil {
