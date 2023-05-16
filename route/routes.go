@@ -45,13 +45,14 @@ func NewRoute(e *echo.Echo, db *gorm.DB) {
 	//expense collection
 	expense := e.Group("/expenses")
 	expense.GET("", controller.GetExpenseController)
-	expense.POST("", controller.CreateIncomeController)
+	expense.POST("", controller.CreateExpenseController)
 	expense.PUT("/:id", controller.UpdateExpenseController)
 	expense.DELETE("/:id", controller.DeleteExpenseController)
 
 	//kas collection
 	kas := e.Group("/kas")
-	kas.GET("", controller.GetKasByIdController)
+	kas.GET("/:id", controller.GetKasByIdController)
+	kas.GET("/kas/:id/", controller.GetRemainingBalanceByKasID)
 	kas.POST("", controller.CreateKasController)
 	kas.PUT("/:id", controller.UpdateKasController)
 

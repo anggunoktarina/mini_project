@@ -12,6 +12,33 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
+// func GetUsersController(c echo.Context) error {
+// 	users, err := usecase.GetListUsers()
+// 	if err != nil {
+// 		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
+// 	}
+// 	return c.JSON(http.StatusOK, map[string]interface{}{
+// 		"status": "success",
+// 		"users":  users,
+// 	})
+// }
+
+// func GetUserController(c echo.Context) error {
+// 	id, _ := strconv.ParseUint(c.Param("id"), 10, 32)
+// 	user, err := usecase.GetUser(uint(id))
+
+// 	if err != nil {
+// 		return c.JSON(http.StatusBadRequest, map[string]interface{}{
+// 			"messages":         "error get user",
+// 			"errorDescription": err,
+// 		})
+// 	}
+
+//		return c.JSON(http.StatusOK, map[string]interface{}{
+//			"status": "success",
+//			"users":  user,
+//		})
+//	}
 func GetUsercontroller(c echo.Context) error {
 	users, e := usecase.GetUsers()
 

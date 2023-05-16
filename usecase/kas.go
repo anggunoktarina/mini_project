@@ -29,13 +29,32 @@ func UpdateKas(kas *model.Kas) error {
 	return nil
 }
 
+// func GetRemainingBalance(kas *model.Kas) (float64, error) {
+// 	total := kas.Balance
+// 	incomes, err := database.GetIncomes()
+// 	if err != nil {
+// 		return 0, err
+// 	}
+// 	for _, income := range incomes {
+// 		total += income.Balance
+// 	}
+// 	expense, err := database.GetExpense()
+// 	if err != nil {
+// 		return 0, err
+// 	}
+// 	for _, e := range expense {
+// 		total -= float64(e.Balance)
+// 	}
+// // 	return total, nil
+// }
+
 func GetRemainingBalance(kas *model.Kas) (float64, error) {
 	total := kas.Balance
-	income, err := database.GetIncome(kas.ID)
+	income, err := database.GetIncomes()
 	if err != nil {
 		return 0, err
 	}
-	for _, i := range income.Kas {
+	for _, i := range income {
 		total += i.Balance
 	}
 	expense, err := database.GetExpense()

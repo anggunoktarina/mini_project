@@ -13,7 +13,7 @@ func LoginUserController(c echo.Context) error {
 	user := model.User{}
 	c.Bind(&user)
 
-	err := usecase.LoginUsers(&user)
+	err := usecase.LoginUser(&user)
 	if err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}

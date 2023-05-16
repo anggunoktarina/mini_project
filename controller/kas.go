@@ -59,3 +59,30 @@ func UpdateKasController(c echo.Context) error {
 		"message": "success update kas",
 	})
 }
+
+func GetRemainingBalanceByKasID(c echo.Context) error {
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		return echo.NewHTTPError(http.StatusBadRequest, "Invalid kas ID")
+	}
+
+	// Get kas by ID
+	kas, err := usecase.GetKasById(uint(id))
+	if err != nil {
+		return echo.NewHTTPError(http.StatusNotFound, "Kas not found")
+	}
+
+	// Get remaining balance
+	remainingBalance, err := usecase.GetRemainingBalance(kas)
+	if err != nil {
+		return echo.NewHTTPError(http.StatusInternalServerError, "Failed to get remaining balance")
+	}
+
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"message":           "Success get remaining balance by kas ID",
+		"kas_id":            kas.ID,
+		"total_kas":         kas.Total_Kas,
+		"balance":           kas.Balance,
+		"remaining_balance": remainingBalance,
+	})
+}
